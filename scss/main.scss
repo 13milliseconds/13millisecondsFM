@@ -14,12 +14,20 @@
 
    $black: #000000;
    $white: #ffffff;
-   $yellow: yellow;
+   $yellow: #FFEA00;
 
 html {
   color: #222;
   font-size: 1em;
   line-height: 1.4;
+
+  font-family: titling-gothic-fb-extended, sans-serif;
+  font-weight: 500;
+  font-style: normal;
+
+  p{
+    margin-top: 0;
+  }
 }
 
 /*
@@ -109,19 +117,31 @@ textarea {
   height: 100vh;
 
   .topBanner{
-    padding: 20px 0;
+    padding: 10px 0;
+    background: $black;
+    color: $white;
+    text-transform: uppercase;
+    font-size: 20px;
+    height: 40px;
+    background-image: url('../img/signup.svg');
+    background-repeat: repeat no-repeat;
+    background-size: auto 20px;
+    background-position-y: center;
+    animation: 60s linear infinite banner;
   }
 
   .content{
     flex: 1;
     display: flex;
+    font-size: 1.2em;
+    line-height: 1.7em;
 
     .leftBox{
       flex: 0 0 20%;
       display: flex;
       flex-flow: column;
       justify-content: flex-end;
-      padding: 20px;
+      padding: 50px 20px;
       background: $yellow;
     }
 
@@ -130,9 +150,126 @@ textarea {
       display: flex;
       flex-flow: column;
       justify-content: space-between;
-      padding: 20px;
+      background: $white;
+      padding: 50px;
+      
+      .signup{
+        position: relative;
+
+        .sticker{
+          display: none;
+          position: absolute;
+          right: 50%;
+          width: 200px;
+          top: -50px;
+        }
+
+        #mc_embed_signup_scroll{
+          display: flex;
+  
+          input[type="email"],
+          input[type="submit"]{
+            border: 3px solid $black;
+            //font-size: 20px;
+          }
+  
+          input[type="email"]{
+            flex: 1;
+            padding: 15px;
+            text-transform: lowercase;
+  
+            &::placeholder{
+              color: #ccc;
+              text-transform: capitalize;
+            }
+          }
+  
+          input[type="submit"]{
+            height: 100%;
+            text-transform: uppercase;
+            padding: 15px;
+            margin-left: 20px;
+            background: transparent;
+          }
+        }
+      }
     }
   }
+}
+
+@keyframes banner {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: 500%;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .contentWrap{
+    .content{
+      .rightBox{
+        .signup {
+          #mc_embed_signup_scroll{
+            flex-flow: column;
+
+            input[type="submit"]{
+              width: 100%;
+              margin-left: 0;
+              margin-top: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  //Mobile
+  .contentWrap{
+    .topBanner{
+      padding: 20px 0;
+      animation: 20s linear infinite banner;
+    }
+
+    .content{
+      flex-flow: column;
+
+      .leftBox{
+        background: $white;
+
+        img{
+          max-width: 200px;
+        }
+      }
+
+      .rightBox{
+        padding: 0;
+
+        .intro{
+          padding: 20px;
+        }
+
+        .signup {
+          background: $yellow;
+          padding: 20px;
+
+          #mc_embed_signup_scroll{
+            flex-flow: column;
+
+            input[type="submit"]{
+              width: 100%;
+              margin-left: 0;
+              margin-top: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+
 }
 
 /* ==========================================================================
